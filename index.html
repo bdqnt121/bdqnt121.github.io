@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=0.4, maximum-scale=0.4,user-scalable=0;" name="viewport" />
+	<link rel="icon" href="public/favicon.ico" mce_href="public/favicon.ico" type="image/x-icon">
+	<title>miss</title>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding:0;
+		}
+		.bodybg0{
+			background-color:#8AC060;
+		}
+		.bodybg1{
+			background:#4c4c4c;
+		}
+		.content{
+		    /*width:1121px;
+		    height:600px;*/
+		    width:90%;
+		    height:600px;
+		    border:2px solid green;
+		    position:relative;
+		    left:0;
+		    right:0;
+		    margin-left:auto;
+		    margin-right:auto;
+		    margin-top:10%;
+		}
+		.move{
+		    width:100%;
+		    height:100%;
+		    position:absolute;
+		    bottom:0;
+		    z-index:200;
+		}
+		.snake_bg{
+		    cursor:pointer;
+		    width:193px;
+		    height:193px;
+		    position:absolute;
+		    top:50%;
+		    left:50%;
+		    margin-left:-96.5px;
+		    margin-top:-96.5px;
+		    z-index:199;
+		    background:url(img/snake-bg.png) no-repeat top left;
+		    opacity:0.7;
+		}
+		.score{
+		    width:200px;
+		    height:50px;
+		    border:1px solid #000;
+		    text-align:center;
+		    line-height:50px;
+		    font-size:24px;
+		    color:#FF4400;
+		    position:absolute;
+		    left:0;
+		    right:0;
+		    margin-left:auto;
+		    margin-right:auto;
+		    margin-top:-70px;
+		    cursor:pointer;
+		}
+		/* 贪吃蛇 */
+		.food{
+		    width:38px;
+		    height:38px;
+		    border:1px solid red;
+		    /* background:#FF0000; */
+		    position:absolute;
+		    z-index:1003;
+		    border-radius:5px;
+		    
+		}
+		.ming {
+		    background:url(img/ming.jpg);
+		    background-position:center;
+		    background-size:100%;
+		}
+		.zuo{
+		    background:url(img/zuo.jpg);
+		    background-position:center;
+		    background-size:100%;
+		}
+		.ai{
+		    background:url(img/ai.jpg);
+		    background-position:center;
+		    background-size:100%;
+		}
+		.head{
+		    width:40px;
+		    height:40px;
+		    background:url(img/snake.jpg);
+		    background-position:center;
+		    background-color:#000;
+		    background-size:100%;
+		    border-radius:35%;
+		    position:absolute;
+		    z-index:1004;
+		}
+		.body{
+		    width:40px;
+		    height:40px;
+		    background:rgb(82, 71, 68);
+		    border-radius:35%;
+		    position:absolute;
+		    z-index:800;
+		}
+		.bodybg0 .body{
+			background:rgb(82, 71, 68);
+		}
+		.bodybg1 .body{
+			background:#7c7c7c;
+		}
+		.btns{
+			width:750px;
+			height:500px;
+			margin-top:200px;
+			margin:100px auto 0 auto;
+			position: relative;
+		}
+		
+		.top-wrap,.right-wrap,.left-wrap,.bottom-wrap{
+			width:250px;
+			height:250px;
+			background-color:rgba(255,255,255,0.1);
+		}
+		.top-wrap:active,.right-wrap:active,.left-wrap:active,.bottom-wrap:active{
+			background-color:rgba(255,255,255,0.4);
+		}
+		.top-wrap{
+			position:absolute;
+			top:0;
+			left:0;
+			right:0;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.left-wrap{
+			position:absolute;
+			top:250px;
+			left:0;
+		}
+		.right-wrap{
+			position:absolute;
+			top:250px;
+			right:0;
+		}
+		.bottom-wrap{
+			position:absolute;
+			top:250px;
+			left:0;
+			right:0;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.btn{
+			width:0;
+			height:0;
+			position: absolute;
+			left:0;
+			right:0;
+			top:0;
+			bottom:0;
+			margin:auto;
+		}
+		.top{
+			border-bottom:125px solid rgba(255,255,255,0.5);
+			border-left:62.5px solid transparent;
+			border-right:62.5px solid transparent;
+		}
+		.left{
+			border-right:125px solid rgba(255,255,255,0.5);
+			border-top:62.5px solid transparent;
+			border-bottom:62.5px solid transparent;
+		}
+		.right{
+			border-left:125px solid rgba(255,255,255,0.5);
+			border-top:62.5px solid transparent;
+			border-bottom:62.5px solid transparent;
+		}
+		.bottom{
+			border-top:125px solid rgba(255,255,255,0.5);
+			border-left:62.5px solid transparent;
+			border-right:62.5px solid transparent;
+		}
+		.footer{
+			position: absolute;
+			bottom:-50px;
+			right:30px;
+		}
+		.footer>a{
+			color:#fff;
+			display: block;
+		}
+		.changebg{
+			color:#fff;
+			position: absolute;
+			bottom:-50px;
+			left:30px;
+			font-size:1.2em;
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body class="bodybg0">
+    <div class="content">
+        <div class="score">分数：0</div>
+        <div class="footer">
+        	<a href="https://github.com/bdqnt121/bdqnt121.github.io">源码在github上</a>
+        	<a href="javascript:void(0);" style="text-decoration: none;cursor:none;">点击分数暂停</a>
+        </div>
+        <div class="changebg">点点换背景</div>
+        <div class="move"></div>
+        <div class="snake_bg"></div>
+    </div>
+    <div class="btns">
+    	<div class="top-wrap">
+    		<div class="top btn"></div>
+    	</div>
+    	<div class="left-wrap">
+    		<div class="left btn"></div>
+    	</div>
+    	<div class="right-wrap">
+    		<div class="right btn"></div>
+    	</div>
+    	<div class="bottom-wrap">
+    		<div class="bottom btn"></div>
+    	</div>
+    </div>
+	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript">
+		var changebg = (function () {
+			var body = window.document.getElementsByTagName('body')[0];
+			var i = 1;
+			return function () {
+				body.className = 'bodybg' + (i % 2);
+				i++;
+			}
+		}());
+		window.document.getElementsByClassName('changebg')[0].onclick = changebg;
+	</script>
+</body>
+</html>
